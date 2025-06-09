@@ -11,7 +11,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-size: cover;
- color: #9acbfc;
+ color: #cad5d6;
   line-height: 1.5;
   scroll-behavior: smooth;
   min-height: 100vh;
@@ -29,7 +29,7 @@ body {
 }
 
 .header {
-  background-color: #1c1d1e;
+  background-color: #015fbd;
   padding: 20px 0;
   position: sticky;
   top: 0;
