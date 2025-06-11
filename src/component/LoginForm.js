@@ -38,7 +38,10 @@ const styles = {
   },
 };
 
-export default function LoginForm() {
+// ContactForm.js
+export default function ContactForm() {
+  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
