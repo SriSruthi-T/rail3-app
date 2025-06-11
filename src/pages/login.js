@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../component/LoginForm';
 
 export default function LoginPage() {
   const styles = {

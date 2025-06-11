@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import LocationViewer from '@/components/LocationViewer';
+import LocationViewer from '@/component/LocationViewer';
 
 export default function Locations() {
   return (

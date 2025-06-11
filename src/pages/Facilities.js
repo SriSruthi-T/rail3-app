@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import FacilitiesSection from '@/components/FacilitiesSection'; // adjust the path if needed
+import FacilitiesSection from '@/component/FacilitiesSection'; // adjust the path if needed
 
 export default function FacilitiesPage() {
  <div style={styles.page}>
