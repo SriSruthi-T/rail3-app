@@ -1,6 +1,6 @@
-// pages/locations.js
 import Image from 'next/image';
 import Link from 'next/link';
+import LocationViewer from '@/components/LocationViewer';
 
 export default function Locations() {
   return (
@@ -16,8 +16,8 @@ export default function Locations() {
 }
 
 const styles = {
-  page: { padding: 20, fontFamily: 'Arial, sans-serif', textAlign: 'center' },
-  title: { fontSize: 28, fontWeight: 'bold', marginBottom: 10 },
+  page: { padding: 20, fontFamily: 'Arial, sans-serif', textAlign: 'center' ,color: '#0070f3'},
+  title: { fontSize: 28, fontWeight: 'bold', marginBottom: 10 ,color: '#0070f3'},
   description: { fontSize: 16, marginBottom: 20 },
   imageWrapper: { display: 'flex', justifyContent: 'center' },
   image: { borderRadius: 10 },
