@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import Header from '../component/Header';
 const styles = {
   page: { fontFamily: 'Arial, sans-serif', padding: 20 },
   header: { backgroundColor: '#f8f9fa', padding: '10px 0' },
@@ -71,11 +71,11 @@ export default function Home() {
         <div style={styles.navContainer}>
           <div style={styles.logo}>SMARTRAILNAV</div>
           <nav style={styles.nav}>
-            <Link href="/stations"><span style={styles.navLink}>Stations</span></Link>
-            <Link href="/facilities"><span style={styles.navLink}>Facilities</span></Link>
-            <Link href="/locations"><span style={styles.navLink}>Locations</span></Link>
+            <Link href="/Stations"><span style={styles.navLink}>Stations</span></Link>
+            <Link href="/Facilities"><span style={styles.navLink}>Facilities</span></Link>
+            <Link href="/Locations"><span style={styles.navLink}>Locations</span></Link>
             <Link href="/login"><span style={styles.navLink}>Log In</span></Link>
-            <Link href="/contact"><span style={styles.navLink}>Contact Us</span></Link>
+            <Link href="/Contact"><span style={styles.navLink}>Contact Us</span></Link>
           </nav>
         </div>
       </header>

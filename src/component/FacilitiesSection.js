@@ -1,4 +1,4 @@
-// components/FacilitiesSection.js
+// component/FacilitiesSection.js
 import Image from 'next/image';
 import Link from 'next/link';
 
