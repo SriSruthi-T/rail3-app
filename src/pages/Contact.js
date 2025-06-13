@@ -1,16 +1,27 @@
-// pages/contact.js
-import Header from '../component/Header';
+import Header from '../component/Header'; // or '../components/Header'
+import ContactForm from '../component/ContactForm';
 
 export default function Contact() {
   return (
     <>
       <Header />
-      <main style={{ padding: 40 }}>
+      <main className="contact-container">
         <h1>Contact Us</h1>
-        <p>Email: support@smartrailnav.com</p>
-        <p>Phone: 1800-RAILWAY</p>
+        <ContactForm />
+        <style jsx>{`
+          .contact-container {
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Inter', sans-serif;
+          }
+          h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #0070f3;
+          }
+        `}</style>
       </main>
     </>
   );
 }
-
