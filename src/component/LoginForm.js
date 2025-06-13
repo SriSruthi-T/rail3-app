@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
@@ -9,8 +10,8 @@ export default function LoginForm() {
   const router = useRouter();
 
   useEffect(() => {
-    if (email && !email.includes('@')) {
-      setErrorMessage('Invalid email format');
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrorMessage('❌ Invalid email format');
     } else {
       setErrorMessage('');
     }
@@ -20,20 +21,75 @@ export default function LoginForm() {
     e.preventDefault();
 
     if (!email || !password) {
-      setErrorMessage('Both fields are required');
+      setErrorMessage('⚠️ Both email and password are required.');
       return;
     }
 
-    router.push('/'); // redirect to index.js
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrorMessage('❌ Please enter a valid email.');
+      return;
+    }
+
+    // Simulate login logic
+    setErrorMessage('');
+    router.push('/'); // Redirect to homepage
   };
 
   return (
-    <form style={{ display: 'flex', flexDirection: 'column', gap: 15, alignItems: 'center', marginTop: 20 }} onSubmit={handleSubmit}>
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      <button style={{ backgroundColor: '#0070f3', color: '#fff', padding: 10, border: 'none', borderRadius: 5 }} type="submit">Login</button>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 15,
+        alignItems: 'center',
+        marginTop: 40,
+        maxWidth: 400,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        padding: 20,
+        border: '1px solid #ccc',
+        borderRadius: 10,
+        fontFamily: 'Inter, sans-serif',
+      }}
+    >
+      <h2 style={{ color: '#0070f3' }}>Login to SmartRailNav</h2>
+
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        style={{ width: '100%', padding: 10 }}
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        style={{ width: '100%', padding: 10 }}
+      />
+
+      <button
+        type="submit"
+        style={{
+          backgroundColor: '#0070f3',
+          color: '#fff',
+          padding: '10px 20px',
+          border: 'none',
+          borderRadius: 5,
+          cursor: 'pointer',
+        }}
+      >
+        Login
+      </button>
+
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </form>
   );
 }
+
 

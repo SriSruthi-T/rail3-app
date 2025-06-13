@@ -13,20 +13,26 @@ export default function SmartRailBot() {
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    const newMessages = [...messages, { role: 'user', content: input }];
-    setMessages(newMessages);
+    const userMessage = { role: 'user', content: input };
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInput('');
     setLoading(true);
 
     try {
-      const res = await axios.post('/api/gemini-chat', { messages: newMessages });
-      console.log('Response from Gemini:', res.data); // ✅ Debug
-      setMessages([...newMessages, res.data.reply]);
-    } catch (error) {
-      console.error('Chatbot error:', error); // ✅ Debug
+      // Send only the latest user message as `prompt`
+      const res = await axios.post('/api/chatbot', { prompt: input });
+
+      // Append bot reply to chat
       setMessages([
-        ...newMessages,
-        { role: 'assistant', content: '❌ Failed to respond. Try again.' },
+        ...updatedMessages,
+        { role: 'assistant', content: res.data.reply.content },
+      ]);
+    } catch (error) {
+      console.error('Chatbot error:', error);
+      setMessages([
+        ...updatedMessages,
+        { role: 'assistant', content: '❌ Failed to respond. Try again later.' },
       ]);
     } finally {
       setLoading(false);
@@ -40,27 +46,37 @@ export default function SmartRailBot() {
       <div style={{ maxHeight: 250, overflowY: 'auto', marginBottom: 10 }}>
         {messages.map((msg, idx) => (
           <div key={idx} style={{ marginBottom: 8 }}>
-            <strong>
-              {msg.role === 'user' ? '🧑‍💼 You' : '🤖 Bot'}:
-            </strong>{' '}
+            <strong>{msg.role === 'user' ? '🧑‍💼 You' : '🤖 Bot'}:</strong>{' '}
             <span style={{ marginLeft: 6 }}>{msg.content}</span>
           </div>
         ))}
       </div>
 
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Type here..."
-        style={{ width: '75%', padding: 8 }}
-        onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-      />
-      <button onClick={handleSend} disabled={loading} style={{ marginLeft: 10 }}>
-        {loading ? 'Sending...' : 'Send'}
-      </button>
+      <div>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type here..."
+          style={{ width: '75%', padding: 8 }}
+          onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+        />
+        <button
+          onClick={handleSend}
+          disabled={loading}
+          style={{
+            marginLeft: 10,
+            padding: '8px 16px',
+            backgroundColor: '#0070f3',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 4,
+            cursor: 'pointer',
+          }}
+        >
+          {loading ? 'Sending...' : 'Send'}
+        </button>
+      </div>
     </div>
   );
 }
-
-
