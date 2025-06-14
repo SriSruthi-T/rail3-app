@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import Header from '../component/Header';
+import UploadImage from '@/component/UploadImage'; // ✅ Add this line
+
 const styles = {
   page: { fontFamily: 'Arial, sans-serif', padding: 20 },
   header: { backgroundColor: '#f8f9fa', padding: '10px 0' },
@@ -96,7 +97,14 @@ export default function Home() {
             priority
           />
         </div>
+
+        {/* ✅ UploadImage component added here */}
+        <div style={{ marginTop: 50 }}>
+          <h2 style={{ fontSize: 24, marginBottom: 10 }}>Upload Station Images</h2>
+          <UploadImage />
+        </div>
       </main>
     </div>
   );
 }
+
