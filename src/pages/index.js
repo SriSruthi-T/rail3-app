@@ -86,7 +86,7 @@ export default function Home() {
         <h3 style={styles.clock}>Current Time: {currentTime}</h3>
         <h1 style={styles.title}>Explore the Railway Stations, Facilities, and Locations</h1>
         <p style={styles.subtitle}>Find your nearest station, explore facilities, and get directions with ease.</p>
-        <Link href="/stations" style={styles.button}>Find a Station</Link>
+        <Link href="/Stations" style={styles.button}>Find a Station</Link>
         <div style={styles.imageWrapper}>
           <Image
             src="/rail4.jpg"

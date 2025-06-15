@@ -1,15 +1,16 @@
-import '@/styles/globals.css';
-import { UserProvider } from '../component/UserContext';
-import { Toaster } from 'react-hot-toast';
+import '@/styles/globals.css'; // Adjust the path if needed
 import { Analytics } from '@vercel/analytics/react';
 
-export default function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
-    <UserProvider>
-      <Toaster position="top-right" reverseOrder={false} />
+    <>
       <Component {...pageProps} />
+      {/* Only load analytics in production */}
       {process.env.NODE_ENV === 'production' && <Analytics />}
-    </UserProvider>
+    </>
   );
 }
+
+export default MyApp;
+
 
