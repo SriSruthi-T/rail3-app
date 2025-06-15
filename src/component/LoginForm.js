@@ -9,6 +9,7 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -41,7 +42,11 @@ export default function LoginForm() {
 
     // Simulate login or registration logic
     setErrorMessage('');
-    router.push('/'); // Redirect to homepage
+    setSuccessMessage('✅ Login Successful! Redirecting...');
+
+    setTimeout(() => {
+      router.push('/'); // Redirect to homepage after 2 seconds
+    }, 2000);
   };
 
   return (
@@ -115,6 +120,7 @@ export default function LoginForm() {
       </button>
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
     </form>
   );
 }
