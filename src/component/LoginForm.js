@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function LoginForm() {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -12,16 +14,18 @@ export default function LoginForm() {
   useEffect(() => {
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setErrorMessage('❌ Invalid email format');
+    } else if (phone && !/^\d{10}$/.test(phone)) {
+      setErrorMessage('❌ Phone number must be 10 digits');
     } else {
       setErrorMessage('');
     }
-  }, [email]);
+  }, [email, phone]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      setErrorMessage('⚠️ Both email and password are required.');
+    if (!name || !phone || !email || !password) {
+      setErrorMessage('⚠️ All fields are required.');
       return;
     }
 
@@ -30,7 +34,12 @@ export default function LoginForm() {
       return;
     }
 
-    // Simulate login logic
+    if (!/^\d{10}$/.test(phone)) {
+      setErrorMessage('❌ Phone number must be 10 digits.');
+      return;
+    }
+
+    // Simulate login or registration logic
     setErrorMessage('');
     router.push('/'); // Redirect to homepage
   };
@@ -54,6 +63,24 @@ export default function LoginForm() {
       }}
     >
       <h2 style={{ color: '#0070f3' }}>Login to SmartRailNav</h2>
+
+      <input
+        type="text"
+        placeholder="Full Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+        style={{ width: '100%', padding: 10 }}
+      />
+
+      <input
+        type="tel"
+        placeholder="Phone Number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        required
+        style={{ width: '100%', padding: 10 }}
+      />
 
       <input
         type="email"
@@ -91,5 +118,6 @@ export default function LoginForm() {
     </form>
   );
 }
+
 
 
