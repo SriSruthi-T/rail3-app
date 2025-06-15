@@ -1,4 +1,4 @@
-import Header from '../component/Header'; // or '../components/Header'
+import Header from '../component/Header'; 
 import ContactForm from '../component/ContactForm';
 
 export default function Contact() {

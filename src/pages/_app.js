@@ -1,14 +1,14 @@
 import '@/styles/globals.css';
 import { UserProvider } from '../component/UserContext';
 import { Toaster } from 'react-hot-toast';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App({ Component, pageProps }) {
   return (
     <UserProvider>
-      {/* Toast notifications (top-right corner) */}
       <Toaster position="top-right" reverseOrder={false} />
-      {/* Main component for the current page */}
       <Component {...pageProps} />
+      {process.env.NODE_ENV === 'production' && <Analytics />}
     </UserProvider>
   );
 }
